@@ -1,0 +1,77 @@
+/* map.html의 전체 컨테이너 스타일 */
+.map-container {
+    width: 90%; /* 페이지 너비의 90%를 사용 */
+    max-width: 960px; /* 너무 커지지 않도록 최대 너비 설정 */
+    margin: 2rem auto; /* 위아래 여백을 주고, 좌우는 자동으로 중앙 정렬 */
+    padding: 2rem;
+    background-color: #161616; /* 어두운 배경 (base.css와 유사하게) */
+    border: 1px solid #ffd700; /* 금색 테두리 */
+    border-radius: 8px; /* 부드러운 모서리 */
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1); /* 은은한 금색 그림자 */
+    text-align: center; /* 내부 텍스트 중앙 정렬 */
+}
+
+/* 지도 제목 부분 스타일 */
+.map-header {
+    margin-bottom: 2rem; /* 헤더 블록과 캔버스 사이에 여백 추가 */
+}
+
+.map-header h1 {
+    margin-bottom: 0.5rem;
+    color: #c8c8c8; /* 밝은 회색 텍스트 */
+}
+
+.map-header p {
+    margin-bottom: 1.5rem; /* 버튼과의 간격을 적절히 조정 */
+    color: #888; /* 약간 더 어두운 회색 */
+}
+
+#startExplorationBtn {
+    background-color: #000000; /* 검은색 배경 */
+    color: #32cd32; /* 녹색 텍스트 */
+    border: 1px solid #32cd32; /* 녹색 테두리 */
+    border-radius: 5px; /* 5px 굴곡 */
+    padding: 10px 25px; /* 내부 여백 */
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem; /* 폰트 크기 */
+    font-weight: bold;
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
+    text-transform: uppercase; /* 대문자 */
+}
+
+#startExplorationBtn:hover,
+#startExplorationBtn:focus {
+    background-color: #ffd700; /* 노란색 배경 */
+    color: #161616; /* 어두운 텍스트 */
+    border-color: #ffd700; /* 노란색 테두리 */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); /* 호버 시 강조 효과 */
+    outline: none; /* 포커스 시 기본 아웃라인 제거 */
+}
+
+#startExplorationBtn:active {
+    transform: translateY(1px); /* 클릭 시 살짝 아래로 이동하는 효과 */
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.4); /* 클릭 시 그림자 축소 */
+}
+
+/* canvas를 감싸는 div 스타일 (반응형 대응) */
+.canvas-wrapper {
+    width: 100%;
+    max-width: 800px; /* 캔버스의 최대 크기 제한 */
+    margin: 0 auto; /* 중앙 정렬 */
+    border: 2px solid #ddd; /* 캔버스 주변에 얇은 테두리 */
+}
+
+/* canvas 자체의 스타일 */
+#mapCanvas {
+    width: 100%; /* 부모(canvas-wrapper)의 너비에 꽉 차게 설정 */
+    height: auto; /* 너비에 맞춰 높이 자동 조절 */
+    display: block; /* 이미지처럼 취급하여 불필요한 아래 여백 제거 */
+    background-color: #808080; /* 지도가 로드되기 전의 기본 배경색 (회색) */
+
+    /* 픽셀이 뭉개지지 않고 선명하게 보이도록 하는 설정 */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}

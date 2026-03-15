@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}수동 조작 - HappyCircuit{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/control.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="control-container">
+<div id="robot-status">ROBOT: 연결 안됨</div>
+<div id="image-status">IMAGE: 연결 안됨</div>
+
+<div class="video-container">
+  <img id="video-stream" src="" alt="Pi Camera Stream"/>
+  <div id="video-overlay">
+    <div class="spinner"></div>
+    <p>연결 시도중...</p>
+  </div>
+</div>
+
+<div class="d-pad">
+  <div id="forward" class="button forward">↑</div>
+  <div id="left" class="button left">←</div>
+  <div id="stop" class="button stop">■</div>
+  <div id="right" class="button right">→</div>
+  <div id="backward" class="button backward">↓</div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/socket.js') }}"></script>
+{% endblock %}

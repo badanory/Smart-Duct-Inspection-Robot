@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}HappyCircuit{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    {% block styles %}{% endblock %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar">
+          <div class="logo">🤖 HappyCircuit</div>
+          <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+          <ul class="nav-links" id="navMenu">
+            <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">홈</a></li>
+            <li><a href="/control" class="{% if request.path == '/control' %}active{% endif %}">수동 조작</a></li>
+            <li><a href="/disconnection_check" class="{% if request.path == '/disconnection_check' %}active{% endif %}">단선 확인</a></li>
+            <li><a href="/map" class="{% if request.path == '/map' %}active{% endif %}">SLAM 맵</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+
+      <footer>
+        &copy; 2025 HappyCircuit. All rights reserved.
+      </footer>
+
+      <script>
+        // 메뉴 토글 같은 공통 스크립트는 base.html에 둡니다.
+        function toggleMenu() {
+          const menu = document.getElementById('navMenu');
+          menu.classList.toggle('active');
+        }
+      </script>
+
+      <script src="{{ url_for('static', filename='js/socket.js') }}"></script>
+      {% block scripts %}{% endblock %}
+    </div>
+  </body>
+</html>

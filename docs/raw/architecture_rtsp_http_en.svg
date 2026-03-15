@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" style="font-family: Inter, Arial, sans-serif;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <text x="20" y="34" font-size="22" font-weight="bold">RTSP + HTTP/1.1 Architecture (Duct Robot Video Uplink + Inference Flow)</text>
+  <rect x="40" y="70" width="260" height="70" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="170.0" y="97.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Robot Camera (Raspberry Pi)</text>
+  <text x="170.0" y="113.0" text-anchor="middle" dominant-baseline="middle" font-size="13">H.264 Encoder</text>
+  <rect x="40" y="160" width="260" height="70" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="170.0" y="187.0" text-anchor="middle" dominant-baseline="middle" font-size="13">RTSP Server (e.g., MediaMTX)</text>
+  <text x="170.0" y="203.0" text-anchor="middle" dominant-baseline="middle" font-size="13">(RTP/RTCP)</text>
+  <rect x="360" y="115" width="200" height="70" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="460.0" y="142.0" text-anchor="middle" dominant-baseline="middle" font-size="13">On‑site Network</text>
+  <text x="460.0" y="158.0" text-anchor="middle" dominant-baseline="middle" font-size="13">(Duct Environment)</text>
+  <rect x="620" y="60" width="250" height="70" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="745.0" y="87.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Edge Inference (Apple M4 Pro)</text>
+  <text x="745.0" y="103.0" text-anchor="middle" dominant-baseline="middle" font-size="13">YOLOv8 Inference</text>
+  <rect x="900" y="60" width="260" height="70" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="1030.0" y="87.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Result Consumer (Control HMI)</text>
+  <text x="1030.0" y="103.0" text-anchor="middle" dominant-baseline="middle" font-size="13">HTTP/1.1 REST (poll/push)</text>
+  <rect x="620" y="200" width="250" height="70" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="745.0" y="227.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Cloud Inference (AWS g5dn.xlarge)</text>
+  <text x="745.0" y="243.0" text-anchor="middle" dominant-baseline="middle" font-size="13">YOLOv8 Inference</text>
+  <rect x="900" y="200" width="260" height="70" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="1030.0" y="227.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Monitoring/Storage (S3, DB)</text>
+  <text x="1030.0" y="243.0" text-anchor="middle" dominant-baseline="middle" font-size="13">HTTP/1.1 API</text>
+  <rect x="360" y="260" width="200" height="60" rx="10" ry="10" fill="#F5F7FA" stroke="#111827" stroke-width="1.5"/>
+  <text x="460.0" y="282.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Control/Metadata Channel</text>
+  <text x="460.0" y="298.0" text-anchor="middle" dominant-baseline="middle" font-size="13">HTTP/1.1 (REST)</text>
+  <line x1="300" y1="195" x2="360" y2="150" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="330.0" y="166.5" text-anchor="middle" font-size="12">RTSP (TCP/UDP)</text>
+  <line x1="560" y1="150" x2="620" y2="95" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="590.0" y="116.5" text-anchor="middle" font-size="12">RTSP PLAY / Decode</text>
+  <line x1="560" y1="150" x2="620" y2="235" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="590.0" y="186.5" text-anchor="middle" font-size="12">RTSP Relay/Proxy</text>
+  <line x1="870" y1="95" x2="900" y2="95" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="885.0" y="89.0" text-anchor="middle" font-size="12">JSON results</text>
+  <line x1="870" y1="235" x2="900" y2="235" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="885.0" y="229.0" text-anchor="middle" font-size="12">JSON results</text>
+  <line x1="460" y1="290" x2="900" y2="230" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="680.0" y="254.0" text-anchor="middle" font-size="12">Status/Meta Upload</text>
+  <rect x="40" y="360" width="1120" height="120" rx="10" ry="10" fill="#EEF2FF" stroke="#3730A3" stroke-width="1.5"/>
+  <text x="600.0" y="388.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Observed Characteristics</text>
+  <text x="600.0" y="404.0" text-anchor="middle" dominant-baseline="middle" font-size="13">- Avg FPS: ~10, RTSP bandwidth (edge): ~255 kbps, initial latency ≈ 4 s.</text>
+  <text x="600.0" y="420.0" text-anchor="middle" dominant-baseline="middle" font-size="13">- Cloud RTSP long‑run: increasing frame drops over time; quality QP ≈ 14.6–23.7.</text>
+  <text x="600.0" y="436.0" text-anchor="middle" dominant-baseline="middle" font-size="13">- Pros: very low bandwidth, stable for long sessions and multiple subscribers.</text>
+  <text x="600.0" y="452.0" text-anchor="middle" dominant-baseline="middle" font-size="13">- Cons: initial startup latency, frame drop accumulation on long runs.</text>
+  <rect x="40" y="500" width="1120" height="160" rx="10" ry="10" fill="#F5F3FF" stroke="#5B21B6" stroke-width="1.5"/>
+  <text x="600.0" y="548.0" text-anchor="middle" dominant-baseline="middle" font-size="13">Flow Summary</text>
+  <text x="600.0" y="564.0" text-anchor="middle" dominant-baseline="middle" font-size="13">1) Camera encodes H.264 → publishes to RTSP server.</text>
+  <text x="600.0" y="580.0" text-anchor="middle" dominant-baseline="middle" font-size="13">2) Edge/Cloud nodes PLAY the RTSP session and decode frames.</text>
+  <text x="600.0" y="596.0" text-anchor="middle" dominant-baseline="middle" font-size="13">3) YOLOv8 infers boxes/classes/scores.</text>
+  <text x="600.0" y="612.0" text-anchor="middle" dominant-baseline="middle" font-size="13">4) Results (JSON) and metadata are pushed via HTTP/1.1 REST to HMI/DB.</text>
+</svg>

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}감지된 경고 목록{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/disconnection_ckeck.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <h1>감지된 경고 목록</h1>
+
+        {% if db_connected %}
+            <p>데이터베이스에서 실시간으로 감지된 경고 목록을 표시합니다. 자세히 보려면 행을 클릭하세요.</p>
+            {% if warnings %}
+                <div class="table-container">
+                    <table class="warnings-table">
+                        <thead>
+                            <tr>
+                                <th>감지 시간 (UTC)</th>
+                                <th>감지 위치 (X, Y)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for warning in warnings %}
+                                <tr class="warning-row" data-image-path="{{ url_for('static', filename=warning.image_path) }}">
+                                    <td>{{ warning.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                    <td>
+                                        X: {{ '%.2f'|format(warning.odom.x) if warning.odom.x is number else warning.odom.x }},
+                                        Y: {{ '%.2f'|format(warning.odom.y) if warning.odom.y is number else warning.odom.y }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="no-warnings">
+                    <p>아직 감지된 경고가 없습니다.</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="db-disconnected">
+                <p>데이터베이스에 연결되지 않았습니다.</p>
+                <p>순찰을 먼저 진행해주세요.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- The Modal -->
+    <div id="imageModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="modalImage" src="" alt="Warning Image">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.querySelector('.close-button');
+
+            function openModal(imagePath) {
+                modalImg.src = imagePath;
+                modal.style.display = 'flex'; // Use flex to enable centering
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                modalImg.src = ''; // Clear image src
+            }
+
+            document.querySelectorAll('.warning-row').forEach(row => {
+                row.addEventListener('click', function () {
+                    const imagePath = this.dataset.imagePath;
+                    if (imagePath) {
+                        openModal(imagePath);
+                    }
+                });
+            });
+
+            if(closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+
+            // Close modal if overlay is clicked
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modal.style.display === 'flex') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+{% endblock %}

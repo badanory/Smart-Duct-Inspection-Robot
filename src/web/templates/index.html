@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}HappyCircuit - 홈{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <div class="intro-box">
+        <h1>HappyCircuit 로봇 제어 시스템</h1>
+        <p>환영합니다! 아래 메뉴를 통해 로봇을 제어하고 상태를 확인하세요.</p>
+    </div>
+
+    <div class="card-container">
+        <a href="{{ url_for('control.control_page') }}" class="card">
+            <div class="card-icon">🎮</div>
+            <h2>수동 조작</h2>
+            <p>로봇을 직접 조종하여 원하는 작업을 수행합니다.</p>
+        </a>
+
+        <a href="{{ url_for('disconnection_check.disconnection_check_page') }}" class="card">
+            <div class="card-icon">🔌</div>
+            <h2>단선 확인</h2>
+            <p>이미지를 분석하여 케이블의 단선 여부를 확인합니다.</p>
+        </a>
+
+        <a href="{{ url_for('map_viewer.show_map_page') }}" class="card">
+            <div class="card-icon">🗺️</div>
+            <h2>SLAM 맵</h2>
+            <p>실시간으로 생성되는 로봇의 주변 환경 지도를 확인합니다.</p>
+        </a>
+    </div>
+
+    <!-- Real-time Status Container -->
+    <div class="status-container">
+        <h2>실시간 로봇 상태</h2>
+        <div class="status-grid">
+            <div class="status-item">
+                <h3>ROS 연결 상태</h3>
+                <p id="slam-connected" class="status-disconnected">연결 안됨</p>
+                <small id="slam-status">서버로부터 정보 수신 대기 중...</small>
+            </div>
+            <div class="status-item">
+                <h3>배터리 상태</h3>
+                <div class="battery-display">
+                    <div id="battery-progress" style="width: 0%;"></div>
+                    <span id="battery-percentage">N/A</span>
+                </div>
+                <small>전압: <span id="battery-voltage">N/A</span> V</small>
+            </div>
+            <div class="status-item">
+                <h3>현재 위치</h3>
+                <small>X: <span id="odom-x">N/A</span> m, Y: <span id="odom-y">N/A</span> m</small>
+                <small>θ: <span id="odom-theta">N/A</span> °</small>
+            </div>
+            <div class="status-item">
+                <h3>이미지 모듈 <br> 연결 상태</h3>
+                <p id="pi-cv-connected" class="status-disconnected">연결 안됨</p>
+                <small id="pi-cv-status">서버로부터 정보 수신 대기 중...</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

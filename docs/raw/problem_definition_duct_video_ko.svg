@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="900" viewBox="0 0 1300 900" style="font-family: Pretendard, Noto Sans KR, Arial, sans-serif;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <text x="20" y="36" font-size="22" font-weight="bold">문제 정의 구조도 – 협소·비가시성 덕트 환경의 안정적 영상 송신</text>
+  <text x="20" y="60" font-size="14" fill="#374151">Goal: 덕트 내부 로봇(카메라)의 영상을 안정적·효율적으로 전송하여 실시간 모니터링·추론·제어를 가능하게 한다.</text>
+  <g>
+    <rect x="30" y="90" width="360" height="200" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="44" y="116" font-size="15" font-weight="bold" fill="#111827">운용 환경 &amp; 제약(Constraints)</text>
+    <text x="46" y="140" font-size="13" fill="#111827">• 통신 덕트: 협소, 굴곡·차폐 → 전파 감쇠/멀티패스</text>
+    <text x="46" y="158" font-size="13" fill="#111827">• 가시성 제한: 조명 부족, 반사/그림자</text>
+    <text x="46" y="176" font-size="13" fill="#111827">• 네트워크: 간헐적 손실·지연·지터 발생</text>
+    <text x="46" y="194" font-size="13" fill="#111827">• 전력/열 제약: 엣지 장치 연산·인코딩 한계</text>
+    <text x="46" y="212" font-size="13" fill="#111827">• 유지보수 제약: 장시간 연속 운용 필요</text>
+  </g>
+  <g>
+    <rect x="30" y="310" width="360" height="210" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="44" y="336" font-size="15" font-weight="bold" fill="#111827">요구사항(Requirements)</text>
+    <text x="46" y="360" font-size="13" fill="#111827">R1. 신뢰성: 프레임 드롭/세션 끊김 최소화</text>
+    <text x="46" y="378" font-size="13" fill="#111827">R2. 지연: 조작/안전 위해 E2E latency ↓</text>
+    <text x="46" y="396" font-size="13" fill="#111827">R3. 효율: 제한 대역폭에서 품질(QP) 유지</text>
+    <text x="46" y="414" font-size="13" fill="#111827">R4. 견고성: 손실·지터·장시간 운용에 강건</text>
+    <text x="46" y="432" font-size="13" fill="#111827">R5. 단순성: 배포/운용/모니터링의 단순화</text>
+  </g>
+  <g>
+    <rect x="30" y="540" width="360" height="200" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="44" y="566" font-size="15" font-weight="bold" fill="#111827">평가 지표(Metrics)</text>
+    <text x="46" y="590" font-size="13" fill="#111827">• FPS(안정성) / 프레임 드롭율(%)</text>
+    <text x="46" y="608" font-size="13" fill="#111827">• E2E 지연(ms) / 지터(ms)</text>
+    <text x="46" y="626" font-size="13" fill="#111827">• 비트레이트(kbps/Mbps) / QP(화질)</text>
+    <text x="46" y="644" font-size="13" fill="#111827">• 자원사용률(CPU/GPU/메모리)</text>
+    <text x="46" y="662" font-size="13" fill="#111827">• 세션 지속시간 / 재접속 성공율</text>
+  </g>
+  <g>
+    <rect x="420" y="90" width="410" height="220" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="434" y="116" font-size="15" font-weight="bold" fill="#111827">시스템 구성요소(System)</text>
+    <text x="436" y="140" font-size="13" fill="#111827">• 로봇 카메라: Raspberry Pi + H.264 encoder</text>
+    <text x="436" y="158" font-size="13" fill="#111827">• 전송 모듈: RTSP 또는 WebSocket 송신기</text>
+    <text x="436" y="176" font-size="13" fill="#111827">• 엣지 추론: Apple M4 Pro (YOLOv8)</text>
+    <text x="436" y="194" font-size="13" fill="#111827">• 클라우드 추론: AWS g5dn.xlarge (YOLOv8)</text>
+    <text x="436" y="212" font-size="13" fill="#111827">• HMI/대시보드: 제어·모니터링·알람</text>
+    <text x="436" y="230" font-size="13" fill="#111827">• 스토리지/DB: 로그·메타데이터·영상 저장</text>
+  </g>
+  <g>
+    <rect x="420" y="320" width="410" height="160" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="434" y="346" font-size="15" font-weight="bold" fill="#111827">위험요인(Risks)</text>
+    <text x="436" y="370" font-size="13" fill="#111827">• 초기 버퍼링/세션 설정 지연</text>
+    <text x="436" y="388" font-size="13" fill="#111827">• 장시간 운용 중 누적 드롭/메모리 누수</text>
+    <text x="436" y="406" font-size="13" fill="#111827">• 급격한 대역폭 변동 시 화질 열화</text>
+    <text x="436" y="424" font-size="13" fill="#111827">• 장애 시 복구/재접속 실패</text>
+  </g>
+  <g>
+    <rect x="860" y="90" width="410" height="180" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="874" y="116" font-size="15" font-weight="bold" fill="#111827">후보 A: RTSP + HTTP/1.1 (REST)</text>
+    <text x="876" y="140" font-size="13" fill="#111827">장점: 낮은 대역폭, 멀티 구독자, 표준 파이프라인</text>
+    <text x="876" y="158" font-size="13" fill="#111827">단점: 초기 지연, 장시간 프레임 드롭 누적 가능</text>
+    <text x="876" y="176" font-size="13" fill="#111827">적합: 장시간 모니터링·저장 중심 시나리오</text>
+  </g>
+  <g>
+    <rect x="860" y="290" width="410" height="180" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="874" y="316" font-size="15" font-weight="bold" fill="#111827">후보 B: WebSocket + Socket.IO</text>
+    <text x="876" y="340" font-size="13" fill="#111827">장점: 낮은 지연, 제어/이벤트와 통합 용이</text>
+    <text x="876" y="358" font-size="13" fill="#111827">단점: 대역폭 요구↑, 엣지에서 드롭 관찰 가능</text>
+    <text x="876" y="376" font-size="13" fill="#111827">적합: 실시간 제어·상호작용 중심 시나리오</text>
+  </g>
+  <g>
+    <rect x="860" y="490" width="410" height="250" rx="12" ry="12" fill="#F9FAFB" stroke="#111827" stroke-width="1.5"/>
+    <text x="874" y="516" font-size="15" font-weight="bold" fill="#111827">의사결정 흐름(Decision Path)</text>
+    <text x="876" y="540" font-size="13" fill="#111827">1) 테스트베드 구성: 동일 카메라·동일 씬</text>
+    <text x="876" y="558" font-size="13" fill="#111827">2) 양안(A/B) 동시 측정: FPS/지연/드롭/비트레이트/QP</text>
+    <text x="876" y="576" font-size="13" fill="#111827">3) 임계치 설정: R1~R5 충족 여부 판단</text>
+    <text x="876" y="594" font-size="13" fill="#111827">4) 운영 정책:</text>
+    <text x="876" y="612" font-size="13" fill="#111827">   - 실시간 제어 구간 → WS 우선,</text>
+    <text x="876" y="630" font-size="13" fill="#111827">   - 백그라운드 기록/멀티뷰 → RTSP 병행</text>
+    <text x="876" y="648" font-size="13" fill="#111827">5) 장애/복구: 재접속·페일오버 절차 표준화</text>
+  </g>
+</svg>
