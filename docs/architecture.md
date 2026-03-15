@@ -11,7 +11,7 @@ flowchart LR
     subgraph R[Robot Platform]
         C[Camera]
         L[2D LiDAR / IMU]
-        J[Jetson Orin]
+        J[Raspberry Pi]
         S[STM32 Motor Control]
         C --> J
         L --> J
